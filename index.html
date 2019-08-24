@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+/*
+var user={
+	name:'Ivan',
+	saySmth:function(phrase){
+		return this.name+' '+ phrase;
+	}
+}
+//console.log(user.saySmth('Hello'));
+
+function cache(foo){
+	var cacheObj={};
+	return function(phrase){
+		if(cacheObj.phrase&&cacheObj.phrase===phrase){
+			console.log('cache');
+			return cacheObj.result;
+		}
+		var result=foo.call(this,phrase);
+		cacheObj.result=result;
+		cacheObj.phrase=phrase;
+		return result;
+	}
+}
+user.saySmth=cache(user.saySmth);
+ console.log(user.saySmth('Hello'));
+ console.log(user.saySmth('Hello2'));
+ console.log(user.saySmth('Hello3'));
+ console.log(user.saySmth('Hello3'));
+ console.log(user.saySmth('Hello4'));*/
+
+//Привет. Я хочу, чтоб вы написали свой bind и чтоб было немного веселее, свою реализацию метода map
+
+function mapSelfMade(arr, foo){
+		var mapArr=[];
+		for (var index=0; index<arr.length;index++){
+			mapArr[mapArr.length]=foo(arr[index]);	
+		}
+		return mapArr;
+	}
+
+var fooBaseFunc =function(item){
+	return item*item;
+}
+
+//console.log (mapSelfMade([1,'ccccc',3,6,5,4,12],fooBaseFunc));
+//console.log([1,'ccccc',3,6,5,4,12].map(function(item){ return item*item;}))
+
+//свой bind
+var userB={
+	name:'Petr',
+	surname:'Ivanov'
+}
+function funcSayFullname(){
+	return this.name+' '+this.surname;
+}
+
+function bindSelfMade(func, obj){
+	return function(){
+		return func.call(obj);
+	};
+	//obj.newprop=func;
+	//return obj.newprop;
+}
+
+//console.log(bindSelfMade(funcSayFullname,userB));
+//console.log(userB);
+const userFullName=funcSayFullname.bind(userB);
+//console.log(userFullName);
+
+ </script>
+</body>
+</html>
